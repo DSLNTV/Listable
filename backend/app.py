@@ -1,10 +1,14 @@
-from flask import Flask
+from flask import Flask, render_template
+from pathlib import Path
 
-app = Flask(__name__)
+
+rootDir = Path.cwd()
+
+app = Flask(__name__, template_folder=rootDir/"frontend")
 
 @app.route("/")
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return render_template("index.html")
 
 if __name__ == "__main__":
     app.run()
